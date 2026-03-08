@@ -16,6 +16,21 @@ export class User {
   @Column()
   hash: string;
 
+  @Column()
+  firstName: string;
+
+  @Column()
+  lastName: string;
+
+  @Column({ nullable: true })
+  phone: string;
+
+  // TODO : add profile picture
+
+  // TODO : link user to role
+
+  // TODO: link user to organization
+
   @CreateDateColumn()
   createdAt: Date;
 

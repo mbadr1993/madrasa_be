@@ -15,7 +15,7 @@ export class UserService {
    * Create a user if the username is not already taken.
    */
   async createUser(userDTO: CreateUserDto) {
-    const { userName } = userDTO;
+    const { userName, firstName, lastName, phone } = userDTO;
     const existing = await this.userRepository.findOne({
       where: { userName },
     });
@@ -29,9 +29,20 @@ export class UserService {
 
     const user = this.userRepository.create({
       userName,
+      firstName,
+      lastName,
+      phone,
       hash,
     });
 
     return this.userRepository.save(user);
+  }
+
+  getUSerById(id: number) {
+    return this.userRepository.findOne({ where: { id } });
+  }
+
+  getAllUsers() {
+    return this.userRepository.find();
   }
 }
