@@ -4,8 +4,8 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as argon from 'argon2';
 import { Repository } from 'typeorm/repository/Repository.js';
+import { AuthDto } from '../dto/auth.dto';
 import { User } from '../shared-entitiy';
-import { AuthDto } from './dto/auth.dto';
 
 @Injectable({})
 export class AuthService {

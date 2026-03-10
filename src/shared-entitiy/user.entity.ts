@@ -2,8 +2,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
+  ManyToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
+import { Role } from './role.entity';
 
 @Entity()
 export class User {
@@ -27,12 +31,17 @@ export class User {
 
   // TODO : add profile picture
 
-  // TODO : link user to role
+  @ManyToMany(() => Role)
+  @JoinTable({ name: 'user_roles' })
+  roles: Role[];
 
   // TODO: link user to organization
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @Column({ default: true })
   isActive: boolean;
