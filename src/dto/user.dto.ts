@@ -24,6 +24,10 @@ export class CreateUserDto {
 
   @IsNumber({}, { each: true })
   roles: number[];
+
+  @IsNumber()
+  @IsNotEmpty()
+  organizationId: number;
 }
 
 export class UpdateUserDto {

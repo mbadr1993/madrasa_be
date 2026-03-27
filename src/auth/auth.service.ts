@@ -24,6 +24,7 @@ export class AuthService {
     }
 
     const passwordMatches = await argon.verify(user.hash, authDto.password);
+
     if (!passwordMatches) {
       throw new UnauthorizedException('Unauthorized credentials');
     }

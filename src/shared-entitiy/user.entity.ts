@@ -4,14 +4,16 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { Organization } from './organization.entity';
 import { Role } from './role.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'int' })
   id: number;
 
   @Column({ unique: true })
@@ -35,7 +37,11 @@ export class User {
   @JoinTable({ name: 'user_roles' })
   roles: Role[];
 
-  // TODO: link user to organization
+  @ManyToOne(() => Organization, (organization) => organization.id)
+  organization: Organization;
+
+  @ManyToOne(() => User, (user) => user.id, { nullable: true })
+  createdBy: User;
 
   @CreateDateColumn()
   createdAt: Date;
